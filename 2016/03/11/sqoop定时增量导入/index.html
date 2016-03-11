@@ -4,17 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives | captainzmc&#39;s blog</title>
+  <title>sqoop定时增量导入 | captainzmc&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="captainzmc's blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="sqoop使用hsql来存储job信息，开启metastor service将job信息共享，所有node上的sqoop都可以运行同一个job
+一、sqoop的配置文件在sqoop.site.xml中：
+1、sqoop.metastore.server.location
+
+    本地存储路径，默认在tmp下，改为其他路径
+
+2、sqoop.metastore.server.port">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqoop定时增量导入">
+<meta property="og:url" content="http://yoursite.com/2016/03/11/sqoop定时增量导入/index.html">
 <meta property="og:site_name" content="captainzmc's blog">
-<meta property="og:description">
+<meta property="og:description" content="sqoop使用hsql来存储job信息，开启metastor service将job信息共享，所有node上的sqoop都可以运行同一个job
+一、sqoop的配置文件在sqoop.site.xml中：
+1、sqoop.metastore.server.location
+
+    本地存储路径，默认在tmp下，改为其他路径
+
+2、sqoop.metastore.server.port">
+<meta property="og:updated_time" content="2016-03-11T09:44:47.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="captainzmc's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="sqoop定时增量导入">
+<meta name="twitter:description" content="sqoop使用hsql来存储job信息，开启metastor service将job信息共享，所有node上的sqoop都可以运行同一个job
+一、sqoop的配置文件在sqoop.site.xml中：
+1、sqoop.metastore.server.location
+
+    本地存储路径，默认在tmp下，改为其他路径
+
+2、sqoop.metastore.server.port">
   
     <link rel="alternative" href="/atom.xml" title="captainzmc&#39;s blog" type="application/atom+xml">
   
@@ -220,146 +239,136 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-sqoop定时增量导入" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/11/sqoop定时增量导入/" class="archive-article-date">
-  	<time datetime="2016-03-11T09:43:35.000Z" itemprop="datePublished">3月 11</time>
+    <div class="article-meta">
+      <a href="/2016/03/11/sqoop定时增量导入/" class="article-date">
+  	<time datetime="2016-03-11T09:43:35.000Z" itemprop="datePublished">2016-03-11</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/11/sqoop定时增量导入/">sqoop定时增量导入</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sqoop定时增量导入
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqoop/">sqoop</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/09/zmc/" class="archive-article-date">
-  	<time datetime="2016-03-09T02:25:20.000Z" itemprop="datePublished">3月 9</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/09/zmc/">zmc</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>sqoop使用hsql来存储job信息，开启metastor service将job信息共享，所有node上的sqoop都可以运行同一个job</p>
+<p>一、sqoop的配置文件在sqoop.site.xml中：</p>
+<pre><code>1、sqoop.metastore.server.location
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">-hexo</a></li></ul>
+    本地存储路径，默认在tmp下，改为其他路径
+
+2、sqoop.metastore.server.port
+
+      metastore service端口号
+
+3、sqoop.metastore.client.autoconnect.url
+
+    sqoop自动连接的metastore地址，默认是本地的metastore地址
+
+4、sqoop.metastore.client.enable.autoconnect
+
+   开启自动连接。sqoop默认连接本地metastore。注释这个配置会开启自动连接。
+</code></pre><p>二、开启metastore service</p>
+<p>   sqoop下，nohup bin/sqoop metastore</p>
+<p>三、创建job</p>
+<p>sqoop支持两种增量导入模式，<br> 一种是 append，即通过指定一个递增的列，比如：<br>–incremental append  –check-column num_iid –last-value 0</p>
+<p>varchar类型的check字段也可以通过这种方式增量导入（ID为varchar类型的递增数字）：</p>
+<p>–incremental append  –check-column ID –last-value 8<br>另种是可以根据时间戳，比如：<br>–incremental lastmodified –check-column created –last-value ‘2012-02-01 11:0:00’<br>就是只导入created 比’2012-02-01 11:0:00’更大的数据。</p>
+<p>bin/sqoop job –meta-connect jdbc:hsqldb:hsql://10.106.1.234:16000/sqoop –create job_zyztest13 – import  –connect jdbc:oracle:thin:@10.106.1.236:1521:orcl –username SQOOP –password sqoop  –table LXC_TEST_HBASE_TO_ORACLE   –columns NAME,SEX,AGE,CSRQ -m 1 –hbase-table SQOOP_IMPORT_TEST3 –column-family info –hbase-row-key  NAME –split-by NAME –incremental lastmodified –check-column CSRQ –last-value ‘2012-02-01 11:0:00’ –verbose<br>nohup /opt/hadoopcluster/sqoop-1.4.2.bin__hadoop-2.0.0-alpha/bin/sqoop job –exec job_zyztest13 &gt; job_zyztest13.out 2&gt;&amp;1 &amp;</p>
+<p>此时，在10.106.1.234上创建了job_zyztest13这个job，通过bin/sqoop job –meta-connect jdbc:hsqldb:hsql://10.106.1.234:16000/sqoop –list可以查看所有job</p>
+<p>四、定时执行</p>
+<p>使用linux定时器：crontab -e</p>
+<p>编辑定时器，添加<em>/4 </em> <em> </em> *  /opt/hadoopcluster/sqoop-1.4.2.bin__hadoop-2.0.0-alpha/bin/sqoop job –meta-connect jdbc:hsqldb:hsql://10.106.1.234:16000/sqoop –exec job_zyztest13 &gt; job_zyztest13.out 2&gt;&amp;1 &amp; 任务将会每四分钟执行一次</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/09/zmc/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zmc</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/日记/">-日记</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/02/16/hello-world/" class="archive-article-date">
-  	<time datetime="2016-02-16T03:25:38.282Z" itemprop="datePublished">2月 16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/02/16/Hello-captain/" class="archive-article-date">
-  	<time datetime="2016-02-16T02:01:04.000Z" itemprop="datePublished">2月 16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/Hello-captain/">Hello captain</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
-	</div>
 
-          
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="sqoop定时增量导入" data-title="sqoop定时增量导入" data-url="http://yoursite.com/2016/03/11/sqoop定时增量导入/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
 
 </div>
       <footer id="footer">
@@ -385,8 +394,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true
