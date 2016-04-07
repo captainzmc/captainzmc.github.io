@@ -130,7 +130,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">-hexo</a> <a href="/tags/bigdata/" style="font-size: 10px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/sqoop/" style="font-size: 10px;">sqoop</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+						<a href="/tags/hexo/" style="font-size: 10px;">-hexo</a> <a href="/tags/bigdata/" style="font-size: 20px;">bigdata</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/sqoop/" style="font-size: 10px;">sqoop</a> <a href="/tags/storm/" style="font-size: 10px;">storm</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
 					</div>
 				</section>
 				
@@ -221,6 +221,71 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-storm-on-yarn-部署" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/07/storm-on-yarn-部署/" class="article-date">
+  	<time datetime="2016-04-07T02:50:13.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/07/storm-on-yarn-部署/">storm on yarn 部署</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前storm跟spark streaming相比较，一个短板就是spark能跟yarn无缝结合，使用yarn做资源调度。storm作为一个大数据处理组件，现在也可以部署在yarn上。<br>    部署之前以为storm在yarn上运行时会跟spark一样，其实不然。spark的standalone模式会用master和worker进程，在yarn下master和worker被yarn的Resourcemanager和Nodemanager替代。storm在yarn上部署并不是这样，storm的nimbus和supervisor等进程仍然存在，只不过这些进程的开销都是由yarn分配。<br>    废话不多少，进入正题：</p>
+<p>1、GitHub上下载Storm on Yarn<br>wget <a href="https://github.com/yahoo/storm-yarn/archive/master.zip" target="_blank" rel="external">https://github.com/yahoo/storm-yarn/archive/master.zip</a><br>2、如果需要修改hadoop等的版本可以修改storm-yarn-master/pom.xml，修改Hadoop的版本号。（最新版本的storm 0.10.0编译不过，storm 0.96.0可以。hadoop2.7.1可以编译通过）<br>3、unzip storm-yarn-master.zip<br>然后进入 storm-yarn-master 目录通过如下命令进行编译<br>mvn package -DskipTests<br>编译好后解压storm-yarn-master/lib/storm-0.9.0-wip21.zip，得到 storm-0.9.0-wip21目录。</p>
+<p>将得到 storm-0.9.0-wip21 目录移动到 和 storm-yarn-master同级。<br>最终目录是</p>
+<p>/opt/storm-yarn/storm-yarn-master<br>/opt/storm-yarn/storm-0.9.0-wip21</p>
+<p>然后配置storm的启停用户的环境变量<br>vim ~/.basarc<br>添加如下环境变量<br>export JAVA_HOME=/usr/java/jdk1.7.0_45<br>export PATH=$JAVA_HOME/bin:$PATH<br>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>export STORM_WORK=/opt/storm<br>export STORM_HOME=$STORM_WORK<br>export PATH=$PATH:$STORM_WORK/storm-yarn-master/bin:$STORM_WORK/storm-0.9.0-wip21/bin</p>
+<p>export HADOOP_INSTALL=/opt/hadoop<br>export HADOOP_HOME=$HADOOP_INSTALL<br>export PATH=$PATH:$HADOOP_INSTALL/bin<br>export PATH=$PATH:$HADOOP_INSTALL/sbin<br>export HADOOP_MAPRED_HOME=$HADOOP_INSTALL<br>export HADOOP_COMMON_HOME=$HADOOP_INSTALL<br>export HADOOP_HDFS_HOME=$HADOOP_INSTALL<br>export YARN_HOME=$HADOOP_INSTALL</p>
+<p>2:将编译好后的storm-yarn-master/lib/storm-0.9.0-wip21.zip 重命名为storm.zip（storm-yarn-master/lib/下原先有个storm.zip，这个可以删掉）然后添加进hdfs中，可以通过如下命令<br>hdfs dfs -mkdir -p /lib/storm/0.9.0-wip21<br>hdfs dfs -put storm.zip /lib/storm/0.9.0-wip21</p>
+<p>3：需要在hdfs里面添加storm工作目录,并将storm工作目录的所有者设置为storm job提交用户<br>hdfs dfs -mkdir -p /user/storm<br>hdfs dfs -chown storm /user/storm<br>5:启动storm<br>storm-yarn launch /usr/local/storm/storm-0.9.0-wip21/conf/storm.yaml<br>6：关闭storm<br>storm-yarn shutdown -appId application_1398822427232_0143 -output ~/.storm/storm.yaml</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigdata/">bigdata</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/storm/">storm</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-sqoop定时增量导入" class="article article-type-post" itemscope itemprop="blogPost">
   
